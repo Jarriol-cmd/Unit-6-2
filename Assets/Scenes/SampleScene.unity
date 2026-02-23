@@ -12173,6 +12173,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire book
       objectReference: {fileID: 0}
+    - target: {fileID: 6751802034206116524, guid: c391e9c1df4de9546bbd7749d2c38c0c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6751802034206116524, guid: c391e9c1df4de9546bbd7749d2c38c0c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 6751802034206116524, guid: c391e9c1df4de9546bbd7749d2c38c0c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

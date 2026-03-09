@@ -13,6 +13,7 @@ public class MovementScript : MonoBehaviour
     public Transform cam;
     InputAction moveAction;
     InputAction jumpAction;
+    public bool isgrounded = true;
 
     private void Start()
     {
@@ -25,7 +26,6 @@ public class MovementScript : MonoBehaviour
     void Update()
     {
         anim.SetBool("IsWalking", false);
-        anim.SetBool("IsAirbourne", false);
 
         float horizontal = moveAction.ReadValue<Vector2>().x;
         float vertical = moveAction.ReadValue<Vector2>().y;
@@ -46,10 +46,9 @@ public class MovementScript : MonoBehaviour
             anim.SetBool("IsWalking", true);
         }
 
-        if (jumpAction.IsPressed())
+        if (jumpAction.IsPressed() && isgrounded == true)
         {
-            vertical = 4;
-            anim.SetBool("IsAirbourne", true);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 6f, rb.linearVelocity.z);
         }
 
 
@@ -57,9 +56,21 @@ public class MovementScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.tag == "ground")
         {
+            isgrounded = true;
             anim.SetBool("IsAirbourne", false);
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+
+        if (collision.gameObject.tag == "ground")
+        {
+            isgrounded = false;
+            anim.SetBool("IsAirbourne", true);
         }
     }
 }

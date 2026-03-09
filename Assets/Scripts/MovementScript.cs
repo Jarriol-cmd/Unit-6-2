@@ -1,4 +1,5 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,7 @@ public class MovementScript : MonoBehaviour
     void Update()
     {
         anim.SetBool("IsWalking", false);
+        anim.SetBool("IsAirbourne", false);
 
         float horizontal = moveAction.ReadValue<Vector2>().x;
         float vertical = moveAction.ReadValue<Vector2>().y;
@@ -46,7 +48,18 @@ public class MovementScript : MonoBehaviour
 
         if (jumpAction.IsPressed())
         {
-            
+            vertical = 4;
+            anim.SetBool("IsAirbourne", true);
+        }
+
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            anim.SetBool("IsAirbourne", false);
         }
     }
 }
